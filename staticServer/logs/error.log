@@ -1,0 +1,2 @@
+2015/02/12 11:39:40 [error] 12964#11488: *1 CreateFile() "E:\www\frontend-site\staticServer/html/public" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /public HTTP/1.1", host: "localhost:10000"
+2015/02/12 11:40:07 [error] 12964#11488: *1 CreateFile() "E:\www\frontend-site\staticServer/html/public/favicon.ico" failed (3: The system cannot find the path specified), client: 127.0.0.1, server: localhost, request: "GET /public/favicon.ico HTTP/1.1", host: "localhost:10000"
