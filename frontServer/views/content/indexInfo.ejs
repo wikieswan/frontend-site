@@ -3,8 +3,8 @@
 <% goodsList.forEach(function(e){ %>
     <div class="goods-list">
 		<div class="title"><%=e.goodsName%></div>
-		<a href="<%= contentPath %>/goodsInfoShow/<%=e.goodsCode%>" target="_blank">
-			<img src="<%= contentPath %>/<%=e.goodsImg%>" class="img">
+		<a href="<%= staticPath %>/goodsInfoShow/<%=e.goodsCode%>" target="_blank">
+			<img src="<%= staticPath %>/<%=e.goodsImg%>" class="img">
 		</a>
 	</div>
 <% }); %>

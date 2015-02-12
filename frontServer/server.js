@@ -16,11 +16,13 @@ app.use(logger());
 app.use(express.static(__dirname + '/public'));
 
 
-var contentPath = 'http://127.0.0.1:3000';
+var contentPath = 'http://127.0.0.1:8000',
+	staticPath = 'http://127.0.0.1:10000/public/'
 app.get('/', function(req, res){
 	
 	var option = {
 		contentPath : contentPath,
+		staticPath : staticPath,
 		goodsList :[
 			{
 				goodsCode : '1000',
@@ -76,5 +78,5 @@ app.get('/api', function(req, res0){
 	});
 });
 
-app.listen(3000);
-console.log('server start at 3000');
+app.listen(8000);
+console.log('server start at 8000');
