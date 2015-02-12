@@ -15,55 +15,57 @@ app.use(logger());
 
 app.use(express.static(__dirname + '/public'));
 
+//website global envarement setting
+var backendServerHost = {
+		dev : 'http://127.0.0.1:9000',
+		test : '',
+		produce : ''
+	},
+	staticServerHost = {
+		dev : 'http://127.0.0.1:10000',
+		test : '',
+		produce : ''
+	},
+	frontendServerHost = {
+		dev : 'http://127.0.0.1:8000',
+		test : '',
+		produce : ''
+	};
+var _env = 'dev';
 
-var contentPath = 'http://127.0.0.1:8000',
-	staticPath = 'http://127.0.0.1:10000/public/';
 
-app.get('/', function(req, res0){
+var contentPath = frontendServerHost[_env],
+	staticPath = staticServerHost[_env] + '/public/';
+
+
+app.get('/', function(req, res){
+	
+	var env = process.env.NODE_ENV ;
+	console.info('------------------------ddd-------------------------')
+	console.info(env)
 	
 	var option = {
 		contentPath : contentPath,
 		staticPath : staticPath,
 		goodsList :[]
 	}
-	
-	http.get("http://127.0.0.1:9000/goodsList", function(res,data) {
-		res.setEncoding('utf8');
+	http.get(backendServerHost[_env] + "/goodsList", function(res0,data) {
+		res0.setEncoding('utf8');
 		var body = '';
-		res.on('data', function (chunk) {
+		res0.on('data', function (chunk) {
 			body += chunk;
 		});
-		res.on('end', function() {
+		res0.on('end', function() {
 			body = JSON.parse(body)
 		    option.goodsList = body.list;
-		    res0.render('index', option);
+		    res.render('index', option);
 		});
 	}).on('error', function(e) {
 	  console.log("错误：" + e.message);
 	});
 	
 });
-app.get('/maxLen', function(req, res0){
-	
-	var option = {
-		contentPath : contentPath,
-		staticPath : staticPath,
-		goodsList :[]
-	}
-	
-	http.get("http://127.0.0.1:9000/maxLen", function(res,data) {
-		  res.setEncoding('utf8');
-		  res.on('data', function (chunk) {
-		  	console.log(chunk)
-		    chunk = JSON.parse(chunk)
-		   
-		    
-		  });
-	}).on('error', function(e) {
-	  console.log("错误：" + e.message);
-	});
-	
-});
+
 
 app.get('/goodsInfoShow/:goodsCode', function(req, res){
 	var goodsCode = req.params.goodsCode;
