@@ -17,17 +17,17 @@ app.use(express.static(__dirname + '/public'));
 
 //website global envarement setting
 var backendServerHost = {
-		development : 'http://127.0.0.1:9000',
+		development : 'http://10.101.139.29:9000',
 		production : '',
 		test : ''
 	},
 	staticServerHost = {
-		development : 'http://127.0.0.1:10000',
+		development : 'http://10.101.139.29:10000',
 		production : '',
 		test : ''
 	},
 	frontendServerHost = {
-		development : 'http://127.0.0.1:8000',
+		development : 'http://10.101.139.29:8000',
 		production : '',
 		test : ''
 	};
@@ -57,7 +57,7 @@ app.get('/', function(req, res){
 		    res.render('index', option);
 		});
 	}).on('error', function(e) {
-	  console.log("ERROR =================== :" + e.message);
+	    console.log("ERROR =================== :" + e.message);
 	});
 	
 });
