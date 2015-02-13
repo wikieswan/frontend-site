@@ -36,7 +36,7 @@ var _env = process.env.NODE_ENV
 
 
 var contentPath = frontendServerHost[_env],
-	staticPath = staticServerHost[_env] + '/public/';
+	staticPath = staticServerHost[_env] + '/public';
 
 
 app.get('/', function(req, res){
