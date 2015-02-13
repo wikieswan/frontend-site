@@ -17,21 +17,22 @@ app.use(express.static(__dirname + '/public'));
 
 //website global envarement setting
 var backendServerHost = {
-		dev : 'http://127.0.0.1:9000',
-		test : '',
-		produce : ''
+		development : 'http://127.0.0.1:9000',
+		production : '',
+		test : ''
 	},
 	staticServerHost = {
-		dev : 'http://127.0.0.1:10000',
-		test : '',
-		produce : ''
+		development : 'http://127.0.0.1:10000',
+		production : '',
+		test : ''
 	},
 	frontendServerHost = {
-		dev : 'http://127.0.0.1:8000',
-		test : '',
-		produce : ''
+		development : 'http://127.0.0.1:8000',
+		production : '',
+		test : ''
 	};
-var _env = 'dev';
+//run this : SET NODE_ENV=production | development  | test
+var _env = process.env.NODE_ENV
 
 
 var contentPath = frontendServerHost[_env],
@@ -39,11 +40,6 @@ var contentPath = frontendServerHost[_env],
 
 
 app.get('/', function(req, res){
-	
-	var env = process.env.NODE_ENV ;
-	console.info('------------------------ddd-------------------------')
-	console.info(env)
-	
 	var option = {
 		contentPath : contentPath,
 		staticPath : staticPath,
@@ -61,7 +57,7 @@ app.get('/', function(req, res){
 		    res.render('index', option);
 		});
 	}).on('error', function(e) {
-	  console.log("错误：" + e.message);
+	  console.log("ERROR =================== :" + e.message);
 	});
 	
 });
@@ -102,9 +98,10 @@ app.get('/api', function(req, res0){
 		    res0.render('layout', chunk)
 		  });
 	}).on('error', function(e) {
-	  console.log("错误：" + e.message);
+	  console.log("ERROR =================== :" + e.message);
 	});
 });
 
 app.listen(8000);
 console.log('server start at 8000');
+console.info('now the envirament is ' + _env);

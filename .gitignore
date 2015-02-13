@@ -41,3 +41,5 @@ dist
 .tmp
 .sass-cache
 bower_components
+*.log
+**/logs/
